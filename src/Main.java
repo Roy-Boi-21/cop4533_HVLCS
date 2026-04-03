@@ -1,19 +1,20 @@
 import alpabet.Alphabet;
 
 void main() {
-    IO.println("Hello and welcome!");
-
     Alphabet alphabet = new Alphabet();
 
-    alphabet.print();
-
-    alphabet.addCharacter('m', 5);
-    alphabet.addCharacter('a', 1);
-    alphabet.addCharacter('j', 3);
-    alphabet.addCharacter('i', 2);
-
+    alphabet.addCharacter('a', 2);
+    alphabet.addCharacter('b', 4);
+    alphabet.addCharacter('c', 5);
 
     alphabet.print();
 
-    IO.println(alphabet.getStringValue("jijimama"));
+    String strA = "caab";
+    String strB = "aacb";
+
+    // This first operation fills the alphabet with subsequence data.
+    IO.println(alphabet.findMaxSubstring(strA, strB));
+    IO.println();
+    // This second operation will finish faster because the result has already been computed.
+    IO.println(alphabet.findMaxSubstring(strA, strB));
 }
