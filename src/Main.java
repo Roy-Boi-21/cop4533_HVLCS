@@ -54,6 +54,10 @@ void main() {
     String strA = data.strA;
     String strB = data.strB;
 
+    alphabet.print();
+    IO.println(strA);
+    IO.println(strB);
+
     String optimal = alphabet.findMaxSubstring(strA, strB);
 
     IO.println(alphabet.getStringValue(optimal));

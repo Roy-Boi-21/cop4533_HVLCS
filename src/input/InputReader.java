@@ -3,6 +3,7 @@ package input;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
+import java.util.Random;
 import java.util.Scanner;
 
 public class InputReader {
@@ -102,7 +103,82 @@ public class InputReader {
 
     public static InputData GenerateData() {
         InputData data = new InputData();
-        
-        throw new UnsupportedOperationException("TODO");
+
+        Scanner dataReader = new Scanner(System.in);
+
+        data.alphabetSize = -1;
+
+        while (data.alphabetSize < 0) {
+            IO.println("How many characters are in the alphabet?");
+            try {
+                data.alphabetSize = dataReader.nextInt();
+
+                if (data.alphabetSize < 0) {
+                    IO.println("Please enter a nonnegative integer.");
+                }
+            } catch (InputMismatchException e) {
+                IO.println("Please enter a nonnegative integer.");
+            }
+        }
+
+        Integer lowerBound = -1;
+        Integer upperBound = -1;
+
+        while (lowerBound < 0) {
+            IO.println("What is the lower bound of the alphabet?");
+            try {
+                lowerBound = dataReader.nextInt();
+
+                if (lowerBound < 0) {
+                    IO.println("Please enter a nonnegative integer.");
+                }
+            } catch (InputMismatchException e) {
+                IO.println("Please enter a nonnegative integer.");
+            }
+        }
+
+        while (upperBound < lowerBound) {
+            IO.println("What is the upper bound of the alphabet?");
+            try {
+                upperBound = dataReader.nextInt();
+
+                if (upperBound < 0) {
+                    IO.println("Please enter a nonnegative integer.");
+                } else if (upperBound < lowerBound) {
+                    IO.println("The upper bound must be greater than the lower bound.");
+                }
+            } catch (InputMismatchException e) {
+                IO.println("Please enter a nonnegative integer.");
+            }
+        }
+
+        Random rng = new Random();
+        for (char c = 'A'; c < ('A' + data.alphabetSize); c++) {
+            data.alphabet.put(c, rng.nextInt(upperBound) + lowerBound);
+        }
+
+        int stringLength = -1;
+
+        while (stringLength < 0) {
+            IO.println("How many characters long are the two input strings?");
+            try {
+                stringLength = dataReader.nextInt();
+
+                if (stringLength < 0) {
+                    IO.println("Please enter a nonnegative integer.");
+                }
+            } catch (InputMismatchException e) {
+                IO.println("Please enter a nonnegative integer.");
+            }
+        }
+
+        data.strA = "";
+        data.strB = "";
+        for (int i = 0; i < stringLength; i++) {
+            data.strA += (char)('A' + rng.nextInt(data.alphabetSize));
+            data.strB += (char)('A' + rng.nextInt(data.alphabetSize));
+        }
+
+        return data;
     }
 }
