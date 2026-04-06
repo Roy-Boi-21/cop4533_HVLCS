@@ -19,7 +19,7 @@ public class Alphabet {
             alphabet.put(c, value);
             subsequences.put(String.valueOf(c), value);
         } else {
-            throw new IllegalArgumentException(c + " is already in the alphabet.");
+            throw new IllegalStateException(c + " is already in the alphabet.");
         }
     }
 
@@ -27,7 +27,7 @@ public class Alphabet {
         if (alphabet.containsKey(c)) {
             return alphabet.get(c);
         } else {
-            throw new IllegalStateException(c + " is not in the alphabet.");
+            throw new IllegalArgumentException(c + " is not in the alphabet.");
         }
     }
 
