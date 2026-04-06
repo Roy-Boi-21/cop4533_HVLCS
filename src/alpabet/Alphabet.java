@@ -32,7 +32,7 @@ public class Alphabet {
     }
 
     public Integer getStringValue(String str) {
-        if (str.isEmpty()) {
+        if ((str == null) || str.isEmpty()) {
             return 0;
         }
 
@@ -54,25 +54,42 @@ public class Alphabet {
             return s1;
         }
 
-        Integer maxValue = -1;
-        String maxSubstring = s1;
+        Integer n = s1.length();
+        Integer m = s2.length();
 
-        for (int i = 0; i < s1.length(); i++) {
-            String substr1 = s1.substring(0, i) + s1.substring(i + 1);
+        String[][] cache = new String[n + 1][m + 1];
 
-            for (int j = 0; j < s2.length(); j++) {
-                String substr2 = s2.substring(0, j) + s2.substring(j + 1);
-                String commonSubstr = findMaxSubstring(substr1, substr2);
-                Integer substrValue = getStringValue(commonSubstr);
+        // Initialize the cache.
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                cache[i][j] = "";
+            }
+        }
 
-                if (substrValue > maxValue) {
-                    maxValue = substrValue;
-                    maxSubstring = commonSubstr;
+        for (int i = 0; i < n; i++) {
+            Character c1 = s1.charAt(i);
+
+            for (int j = 0; j < m; j++) {
+                Character c2 = s2.charAt(j);
+
+                String candidate = "";
+
+                if (c1 == c2) {
+                    candidate = cache[i][j] + c1;
+                }
+
+                if ((getStringValue(candidate) >= getStringValue(cache[i + 1][j])) &&
+                        (getStringValue(candidate) >= getStringValue(cache[i][j + 1]))) {
+                    cache[i + 1][j + 1] = candidate;
+                } else if (getStringValue(cache[i][j + 1]) >= getStringValue(cache[i + 1][j])) {
+                    cache[i + 1][j + 1] = cache[i][j + 1];
+                } else {
+                    cache[i + 1][j + 1] = cache[i + 1][j];
                 }
             }
         }
 
-        return maxSubstring;
+        return cache[n][m];
     }
 
     public void print() {

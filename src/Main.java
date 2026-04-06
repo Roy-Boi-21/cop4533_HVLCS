@@ -58,6 +58,7 @@ void main() {
     IO.println(strA);
     IO.println(strB);
 
+    IO.println("===== OUTPUT =====");
     String optimal = alphabet.findMaxSubstring(strA, strB);
 
     IO.println(alphabet.getStringValue(optimal));
