@@ -96,6 +96,7 @@ _{0 \leq i \leq n, 0 \leq j \leq m}val(c_i) + OPT(s_1 - c_i, s_2 - c_j) & \text{
 _{0 \leq i \leq n, 0 \leq j \leq m}max\{OPT(s_1 - c_i, s_2 - c_j)\} & \text{else}
 \end{cases}
 $$
+
 This recurrence equation is correct because it ensures that
 every possible compatible subsequence is considered at least
 once.
