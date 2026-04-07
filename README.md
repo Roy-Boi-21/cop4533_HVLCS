@@ -79,23 +79,56 @@ Case 1: Either string is empty.
 - Return 0.
 
 Case 2: s1 and s2 are equal.
-- Return Val(s1).
+- Return val(s1).
 
-Case 3: s1 and s2 evict letter i and j.
-- Remove letter i from s1.
-- Remove letter j from s2.
-- Recurse on the new substrings.
+Case 3: s1 and s2 share character i and j.
+- Add character i to the currently most valued subsequence.
+- Recurse on the remaining potential pairs of s1 and s2.
 
-Case 4: s1 and s2 keep letter i and j.
-- Recurse on the same strings but consider a different pair of letters. 
+Case 4: s1 and s2 don't share character i and j.
+- Recurse on the remaining potential pairs of s1 and s2.
 
 $$
-OPT(s1, s2) = \begin{cases}
-0 & \text{if } s1 = \emptyset | s2 = \emptyset\\
-val(s1) & \text{if } s1 = s2 \\
-_{0 \leq i \leq n, 0 \leq j \leq m}max\{OPT(s1 - i, s2 - j)\} & \text{else}
+OPT(s_1, s_2) = \begin{cases}
+0 & \text{if } s_1 = \emptyset | s_2 = \emptyset\\
+val(s_1) & \text{if } s_1 = s_2 \\
+_{0 \leq i \leq n, 0 \leq j \leq m}val(c_i) + OPT(s_1 - c_i, s_2 - c_j) & \text{if } c_i = c_j \\
+_{0 \leq i \leq n, 0 \leq j \leq m}max\{OPT(s_1 - c_i, s_2 - c_j)\} & \text{else}
 \end{cases}
 $$
+This recurrence equation is correct because it ensures that
+every possible compatible subsequence is considered at least
+once.
 
 ### Question 3: Big-Oh
-Placeholder.
+````
+LET s1, and s2 be the input strings.
+LET M[n][m] be a 2D array of strings.
+
+LET val(s) return the value of a subsequence s.
+
+FOR (i in range(0, n)):
+    LET ci be the ith character in s1.
+    
+    FOR (j in range(0, m)):
+        LET cj be the jth character in s2.
+        
+        IF (ci == cj):
+            candidate = M[n][m] + ci
+        ELSE:
+            candidate = ""
+            
+        IF (val(candidate) > val(M[n + 1][m]) &
+            val(candidate) > val(M[n][m + 1])):
+            M[n + 1][m + 1] = candidate
+        ELSE IF (val(M[n + 1][m] > val(M[n][m + 1]))):
+            M[n + 1][m + 1] = M[n + 1][m]
+        ELSE:
+            M[n + 1][m + 1] = M[n][m + 1]
+
+RETURN length(M[n][m])
+````
+This algorithm's runtime is O(n * m) because it must
+consider every character in both strings to determine
+which sequence of characters is the most valuable common
+subsequence.
