@@ -6,7 +6,53 @@ By: David Visbal Gomez (UFID: 11497647)
 2. Run the program in IntelliJ.
 
 ## Run Instructions
-Placeholder.
+The program will prompt you to choose one of three input
+choices to enter the data.  Type in the corresponding number
+to the input method you wish to choose.
+
+### 1. Manual Input
+First you will have to tell the program how many characters (n)
+are in the alphabet.
+Afterward, you will have to input n character-integer
+pairs to construct the alphabet.
+Finally, you must input two different strings; the program
+will take these two strings to find the highest value
+longest common sequence between them.
+````
+3       // Alphabet size.
+a 2     // Alphabet entry.
+b 4     
+c 5     
+caab    // Strings.
+aacb    
+````
+
+### 2. File Input
+Provide the name of the input file in the tests directory
+and hit enter.
+````
+example.txt  // This is the name of the file.
+````
+
+### 3. Randomly Generated Input
+First you will have to tell the program how many characters (n)
+are in the alphabet.  Then you will specify the upper and
+lower bounds of the values in the alphabet.  Finally, you will
+specify the length of the strings to get the highest value
+longest common subsequence of.
+````
+16      // The size of the alphabet.
+4       // The lower bound of the alphabet's values.
+32      // The upper bound of the alphabet's values.
+128     // The length of the two input strings.
+````
+After choosing any of the three options, the program will
+output the following.
+1. Every character in the alphabet and their corresponding value.
+2. The two input strings.
+3. The value of the optimal subsequence.
+4. The optimal subsequence.
+5. The time it took in seconds to compute the optimal subsequence.
 
 ## Assumptions
 This program assumes every file you're reading in is
