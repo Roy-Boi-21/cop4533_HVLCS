@@ -2,6 +2,8 @@ import alpabet.Alphabet;
 import input.InputReader;
 import input.InputData;
 
+import java.time.*;
+
 void main() {
     // Collect the input.
     IO.println("=== Welcome to the Highest Value Largest Common Subsequence Algorithm! ===");
@@ -58,9 +60,16 @@ void main() {
     IO.println(strA);
     IO.println(strB);
 
+    Instant start = Instant.now();
+
     IO.println("===== OUTPUT =====");
     String optimal = alphabet.findMaxSubstring(strA, strB);
 
     IO.println(alphabet.getStringValue(optimal));
     IO.println(optimal);
+
+    Instant end = Instant.now();
+
+    int nanoseconds = Duration.between(start, end).getNano();
+    IO.println("Optimal substring found in " + (nanoseconds / 1e+9) + " seconds.");
 }

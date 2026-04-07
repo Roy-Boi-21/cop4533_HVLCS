@@ -154,7 +154,7 @@ public class InputReader {
 
         Random rng = new Random();
         for (char c = 'A'; c < ('A' + data.alphabetSize); c++) {
-            data.alphabet.put(c, rng.nextInt(upperBound) + lowerBound);
+            data.alphabet.put(c, rng.nextInt(upperBound - lowerBound) + lowerBound);
         }
 
         int stringLength = -1;

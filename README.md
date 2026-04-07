@@ -9,13 +9,18 @@ By: David Visbal Gomez (UFID: 11497647)
 Placeholder.
 
 ## Assumptions
-Placeholder.
+This program assumes every file you're reading in is
+inside the "tests" directory.  If the input file is not
+in that directory, the program cannot find it.
 
 ## Written Response
-Placeholder.
 
 ### Question 1: Empirical Comparison
-Placeholder.
+This graph represents the increase of runtime with
+respect to string length.  All input files used for
+this graph were generated randomly with an alphabet size
+of 10 and a number range between 10 and 50.
+![graph](data/time_vs_string_length.png)
 
 ### Question 2: Recurrence Equation
 OPT(s1, s2) is the highest value of the longest common
